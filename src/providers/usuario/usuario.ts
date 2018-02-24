@@ -37,4 +37,9 @@ export class UsuarioProvider {
     return this.fireAuth.signOut();
   }
 
+  viewUser(userId: any){
+      var userRef = this.userProfile.child(userId);
+      return userRef.once('value');
+}
+
 }

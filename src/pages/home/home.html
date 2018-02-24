@@ -10,10 +10,10 @@
   
 
   <ion-content class="card-background-page">
-  <ion-card>
-    <img src="assets/imgs/SUCRE-3.jpg"/>
+  <ion-card *ngFor="let pic of photoList">
+    <img class="imagenes" [src]="pic.picture"/>
     <div class="card-title">
-    <button ion-button outline large color="light"> Sucre</button>
+    <button ion-button outline large color="light"> {{pic.name}}</button>
     </div>
   </ion-card>
 
@@ -26,6 +26,5 @@
 
   <button ion-button secondary menuToggle>Toggle Menu</button>
   <button ion-button danger (click)="cerrar()">Cerrar sesion</button>
-
 </ion-content>
 
