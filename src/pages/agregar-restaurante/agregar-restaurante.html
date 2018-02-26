@@ -5,31 +5,70 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title> Agregar Restaurant</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
+<ion-content >
+  <p text-center>Selecciona una imagen o toma una foto para <b>la portada</b> de tu restaurante</p>
 	<img [src]="base64Image" *ngIf="base64Image" />
-	
-	<button ion-button color="primary" block (click)="takePicture()">
-          Tomar Foto
-  	</button>
+	<div text-center>
+  	<button ion-button color="primary" round (click)="takePicture()" icon-start>
+            <ion-icon name="camera"></ion-icon>
+            Tomar Foto
+    </button>
+    <button ion-button color="primary" round (click)="galletyOptions()" icon-start>
+            <ion-icon name="md-photos"></ion-icon>
+            Galeria
+    </button>
+  </div>
 
   
 
   <ion-item>
-    <ion-label stacked>Nombre</ion-label>
-    <ion-input [(ngModel)]="photoName" type="text" placeholder="What's your plants's name?">
+    <ion-label floating>Nombre Restaurante</ion-label>
+    <ion-input [(ngModel)]="nombre" type="text">
     </ion-input>
   </ion-item>
-
-  <button ion-button block (click)=" crearRestaurante(photoName, Picture);  ">
-    Upload Photo
-  </button>
+  <ion-item>
+    <ion-label floating>Descripcion</ion-label>
+    <ion-input [(ngModel)]="descripcion" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Direccion</ion-label>
+    <ion-input [(ngModel)]="direccion" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Contacto</ion-label>
+    <ion-input [(ngModel)]="contacto" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Detalle del horario de atencion</ion-label>
+    <ion-input [(ngModel)]="horario" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Pagina web o facebook: link</ion-label>
+    <ion-input [(ngModel)]="web" type="text"></ion-input>
+  </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Ciudad</ion-label>
+        <ion-select [(ngModel)]="ciudad" okText="Aceptar" cancelText="Cancelar">
+          <ion-option value="nes">Sucre</ion-option>
+          <ion-option value="n64">Cochabamba</ion-option>
+          <ion-option value="ps">Tarija</ion-option>
+          <ion-option value="genesis">Oruro</ion-option>
+          <ion-option value="saturn">Santa Cruz</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  
+  <div text-center>
+    <button ion-button  color="secondary" round (click)=" crearRestaurante();  "
+     icon-start>
+       <ion-icon name="checkmark-circle"></ion-icon>
+       Guardar Cambios
+    </button>
+  </div>
 
 </ion-content>

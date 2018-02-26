@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams, AlertController, ToastController, LoadingController   } from 'ionic-angular';
 import {LoginPage} from '../login/login';
 import {UsuarioProvider} from '../../providers/usuario/usuario';
-import {PostsService} from '../../providers/post-service/post.service';
 import {PhotoProvider} from '../../providers/foto/foto';
 
 //import * as firebase from 'firebase';
@@ -10,7 +9,7 @@ import {PhotoProvider} from '../../providers/foto/foto';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [PostsService]
+  providers: []
 })
 export class HomePage {
    userPostsLists = [];
@@ -19,7 +18,7 @@ export class HomePage {
    public photoList = [];
 
 
-  constructor( public  loadingCtrl: LoadingController,public postService: PostsService,
+  constructor( public  loadingCtrl: LoadingController,
   	public alertCtrl : AlertController,public toastCtrl: ToastController, public navCtrl: NavController,
      public navParams: NavParams, public usuario:UsuarioProvider
      ,public photoProvider: PhotoProvider) {
@@ -45,7 +44,7 @@ export class HomePage {
     });
   }
 
-  listUsersNearby(){
+  /*listUsersNearby(){
     
     var that = this;
     
@@ -77,39 +76,59 @@ that.userPostsLists.length = null; //so that it ddoesn't repeat the list
     toast.present();
       });
 
-  }
+  }*/
 
    ionViewDidLoad() {
   }
 
   ionViewDidEnter(){
-     //var that = this;
+     var that = this;
     
       let toast = this.toastCtrl.create({
       message: 'Cargando Ciudades...',
     });
     
-    toast.present();
+    toast.present();//inicia el toast
+    this.photoProvider.listSomethingOnceService('/ciudad').then((snapshot)=>{
 
-    this.photoProvider.getCiudades().on('value', snapshot => {
-      this.photoList = [];
+    that.userPostsLists.length = null; //so that it ddoesn't repeat the list
+    snapshot.forEach(function (childSnapshot) {
+                      var data = childSnapshot.val();
+                        //data['key'] = childSnapshot.key;
+                        //data['profilePic'] = '/assets/img/marty-avatar.png';
+                        console.log(data);
+                         that.userPostsLists.push(data);
+                });
+            
+    toast.dismiss();
+        
+                
+
+
+    })
+
+    /*this.photoProvider.getCiudades().on('value', snapshot => {
+      //this.photoList = [];
+      //this.photoList.length = null;
       snapshot.forEach( snap => {
+        //this.photoList.length = null;
         this.photoList.push({
           id: snap.key,
           name: snap.val().name,
           picture: snap.val().picture,
         });
         console.log(this.photoList);
-        toast.dismiss();
+        //toast.dismiss();
         return false
       });
+      toast.dismiss();//cierra el toast
     }, error =>{
         let toast = this.toastCtrl.create({
       message: 'Lo siento, no pude recuperar la lista, verifique su conexión a Internet',
       duration: 3000
     });
     toast.present();
-      });               
+      });*/               
 }
 
 }

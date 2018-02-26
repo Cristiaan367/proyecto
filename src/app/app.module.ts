@@ -11,15 +11,17 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrarsePage} from '../pages/registrarse/registrarse';
 import {InicioPage} from '../pages/inicio/inicio';
 import { AgregarRestaurantePage } from '../pages/agregar-restaurante/agregar-restaurante';
+import { VistaRestaurantePage} from '../pages/vista-restaurante/vista-restaurante';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//proveedro de servicios
+//modelo , hacen peticiones a la base de datos
 import {UsuarioProvider} from '../providers/usuario/usuario';
 import {PictureUtils} from '../service/pictureUtils.service';
 import { Camera } from '@ionic-native/camera';
-import { PhotoProvider } from '../providers/foto/foto'; 
+import { PhotoProvider } from '../providers/foto/foto';
+import { RestauranteProvider} from '../providers/restaurante/restaurante'; 
 //importacion de la sdk de firebase
 import * as firebase from 'firebase';
 
@@ -43,7 +45,9 @@ firebase.initializeApp(config);
     LoginPage,
     RegistrarsePage,
     InicioPage,
-    AgregarRestaurantePage
+    AgregarRestaurantePage,
+    VistaRestaurantePage
+
   ],
   imports: [
     BrowserModule,
@@ -59,13 +63,15 @@ firebase.initializeApp(config);
     LoginPage,
     RegistrarsePage,
     InicioPage,
-    AgregarRestaurantePage
+    AgregarRestaurantePage,
+    VistaRestaurantePage
 
   ],
   providers: [
     PictureUtils,
     Camera,
     PhotoProvider,
+    RestauranteProvider,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

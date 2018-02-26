@@ -1,19 +1,24 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Inicio</ion-title>
+    <ion-title>AppGuia</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="ios-log-out-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
   
 
   <ion-content class="card-background-page">
-  <ion-card *ngFor="let pic of photoList">
-    <img class="imagenes" [src]="pic.picture"/>
+  <ion-card *ngFor="let pic of userPostsLists">
+    <img class="imagenes" [src]="pic?.picture"/>
     <div class="card-title">
-    <button ion-button outline large color="light"> {{pic.name}}</button>
+    <button ion-button outline large color="light"> {{pic?.name}}</button>
     </div>
   </ion-card>
 
@@ -25,6 +30,6 @@
   </ion-card>
 
   <button ion-button secondary menuToggle>Toggle Menu</button>
-  <button ion-button danger (click)="cerrar()">Cerrar sesion</button>
+  
 </ion-content>
 
