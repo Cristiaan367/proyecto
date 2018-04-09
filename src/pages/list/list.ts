@@ -25,7 +25,7 @@ export class ListPage {
       if(snapshot.val()){
         that.UsuarioNombreCompleto = snapshot.val().nombre +' '+ snapshot.val().apellido;
         that.UsuarioTelefono = snapshot.val().telefono;
-        that.UsuarioCiudad = snapshot.val().ciudad;
+        that.UsuarioCiudad = snapshot.val().key;
         console.log("este es el nombre del usuario"+ that.UsuarioNombreCompleto);
       }
     })

@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>{{categoria.nombre}}</ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let perfil of perfil$ | async" (click)="verRestaurante(perfil)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <img src="{{perfil?.picture}}" *ngIf="perfil.picture">
+        </ion-col>
+        <ion-col col-6 class="place-content">
+          <h2 color="primary"><b>{{perfil.nombre}}</b></h2>
+          <div class="excerpt">{{perfil.descripcion}}</div>
+          <div class="address"><b>{{perfil.direccion}}</b></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

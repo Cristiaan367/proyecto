@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { RegistrarsePage } from '../registrarse/registrarse';
@@ -24,7 +24,8 @@ export class LoginPage {
   constructor(public usuario : UsuarioProvider,
   	public loadingCtrl: LoadingController,
   	public toastCtrl: ToastController,
-  	public navCtrl: NavController, public navParams: NavParams) {
+  	public navCtrl: NavController, public navParams: NavParams,
+    public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -61,6 +62,15 @@ export class LoginPage {
 
   redirigeRegistro(){
   	this.navCtrl.push(RegistrarsePage);
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Proximamente',
+      subTitle: 'App en desarrollo.........',
+      buttons: ['Aceptar']
+    });
+    alert.present();
   }
 
 }

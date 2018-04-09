@@ -1,0 +1,68 @@
+
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>{{perfil.nombre}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+<div>
+	<img src="{{perfil?.picture}}">
+</div>
+<div padding>
+	<h1><b>{{perfil.nombre}}</b></h1>
+	<h3 ion-text color="danger">{{perfil.descripcion}}</h3>
+	<ion-list>
+	  <ion-item>
+	    <ion-icon name="ios-information-circle-outline" item-start></ion-icon>
+	      <h1 ion-text color="primary"> <b>Contacto:</b> </h1>
+	      {{perfil.contacto}}
+	      <br>
+	    <button ion-button color="secondary" round (click)="showAlert()"> 
+	    	<ion-icon name="logo-whatsapp"></ion-icon>
+			&nbsp;mensaje
+	    </button>
+	    <button ion-button color="primary" round (click)="showAlert()">
+	     	<ion-icon name="call"></ion-icon>
+	     	&nbsp;llamar
+	    </button>
+	  </ion-item>
+	  <ion-item>
+	    <ion-icon  name="pin" item-start></ion-icon>
+	      <h1 ion-text color="primary"> <b>Direccion:</b> </h1>
+	      
+	    <h2 ion-text><b>{{perfil.direccion}}</b></h2>
+	  </ion-item>
+	  <ion-item>
+	    <ion-icon name="md-time" item-start></ion-icon>
+	      <h1 ion-text color="primary"> <b>Horario de Atencion:</b> </h1>
+	      
+	    <h2 ion-text><b>{{perfil.horario}}</b></h2>
+	  </ion-item>
+	  <ion-item>
+	    <ion-icon name="wifi" item-start></ion-icon>
+	      <h1 ion-text color="primary"> <b>Pagina web: </b> </h1>
+	      <p>{{perfil.web}}</p>
+	      <button ion-button color="primary" round (click)="showAlert()">
+	      	visitar pagina web
+	      </button>
+	   
+	  </ion-item>
+	</ion-list>
+	<div>
+	<agm-map [latitude]="perfil.lat" [longitude]="perfil.lng" [zoom]=16>
+  		<agm-marker [latitude]="perfil.lat" [longitude]="perfil.lng">		
+  		</agm-marker>
+	</agm-map>	
+	</div>
+	<div class="botones">
+		<button ion-button color="secondary" round (click)="showAlert()" >
+			<ion-icon name="md-restaurant"></ion-icon>&nbsp; Ver menu 
+		</button>
+		<button ion-button color="primary" round (click)="showAlert()"> 
+			<ion-icon name="md-navigate"></ion-icon>&nbsp; Como llegar 
+		</button>
+	</div>
+</div>
+</ion-content>

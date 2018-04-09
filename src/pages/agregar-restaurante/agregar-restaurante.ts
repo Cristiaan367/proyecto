@@ -31,9 +31,11 @@ export class AgregarRestaurantePage {
     public ciudad;
     public picture;
 		public base64Image;
+    public userPostsLists = [];
 
   constructor(public cameraPlugin: Camera, public restauranteProvider: RestauranteProvider,
   	public navCtrl: NavController, public navParams: NavParams) {
+    this.cargarCategoria();
   		
   }
 
@@ -91,6 +93,21 @@ export class AgregarRestaurantePage {
       this.picture = imageData;
     }, error =>{
         console.log("ERROR ->" + JSON.stringify(error));
+    });
+  }
+
+   cargarCategoria(){
+    var that = this;
+    this.restauranteProvider.listSomethingOnceService('/categoria').then((snapshot)=>{
+
+    that.userPostsLists.length = null; //so that it ddoesn't repeat the list
+    snapshot.forEach(function (childSnapshot) {
+                      var data = childSnapshot.val();
+                        data['key'] = childSnapshot.key;
+                        //data['profilePic'] = '/assets/img/marty-avatar.png';
+                        console.log(data);
+                         that.userPostsLists.push(data);
+                });
     });
   }
 

@@ -1,36 +1,59 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams, AlertController, ToastController, LoadingController   } from 'ionic-angular';
+import { NavController,NavParams, AlertController, ToastController, LoadingController, Loading  } from 'ionic-angular';
 import {LoginPage} from '../login/login';
+import { Observable } from 'rxjs/Observable';
 import {UsuarioProvider} from '../../providers/usuario/usuario';
-import {PhotoProvider} from '../../providers/foto/foto';
+//import {PhotoProvider} from '../../providers/foto/foto';
+import { Categoria} from '../../providers/categoria/categoria';
+import { CategoriaService} from '../../providers/categoria/categorias.service';
+import { ListaRestaurantePage } from '../lista-restaurante/lista-restaurante'
 
 //import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: []
+  //providers: []
 })
 export class HomePage {
-   userPostsLists = [];
-  userProfileLists: any;
-  userId: any;
-   public photoList = [];
+   //userPostsLists = [];
+  //userProfileLists: any;
+  //userId: any;
+   //public photoList = [];
+   showLoader: boolean = true;
+  loading: Loading
+  listaRestaurante = ListaRestaurantePage;
+  Categoria$: Observable<Categoria[]>;
 
 
   constructor( public  loadingCtrl: LoadingController,
   	public alertCtrl : AlertController,public toastCtrl: ToastController, public navCtrl: NavController,
-     public navParams: NavParams, public usuario:UsuarioProvider
-     ,public photoProvider: PhotoProvider) {
+     public navParams: NavParams, public usuario: UsuarioProvider, public categoriaService: CategoriaService) {
     //this.listUsersNearby();
 
       // this.userProfileLists = firebase.database().ref('users');
        
        //get list of posts on page init
+       this.entrar();
+  }
+  ionViewDidLoad() {
+    this.Categoria$ = this.categoriaService.findAll({orderByChild: 'nombre'});
+  }
 
-       
+  entrar() {
+
+    if (!this.showLoader) return;
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Buscando categorias...',
+      duration: 2500
+    });
+
+    this.loading.present();
+    this.showLoader = false;
 
   }
+  
 
   cerrar(){
     var loader = this.loadingCtrl.create({
@@ -42,6 +65,21 @@ export class HomePage {
         loader.dismiss();
         this.navCtrl.setRoot(LoginPage);
     });
+  }
+  viewRestaurante(data){
+    this.navCtrl.push(ListaRestaurantePage, {
+      data: data
+
+    });
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Proximamente',
+      subTitle: 'App en desarrollo.........',
+      buttons: ['Aceptar']
+    });
+    alert.present();
   }
 
   /*listUsersNearby(){
@@ -78,10 +116,10 @@ that.userPostsLists.length = null; //so that it ddoesn't repeat the list
 
   }*/
 
-   ionViewDidLoad() {
+   ionViewDidLoadl() {
   }
 
-  ionViewDidEnter(){
+  /*anterior(){
      var that = this;
     
       let toast = this.toastCtrl.create({
@@ -128,7 +166,7 @@ that.userPostsLists.length = null; //so that it ddoesn't repeat the list
       duration: 3000
     });
     toast.present();
-      });*/               
-}
+      });               
+}*/
 
 }

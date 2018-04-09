@@ -1,0 +1,41 @@
+<!--
+  Generated template for the LocalizacionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>localizacion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<h1>{{ title }}</h1>
+
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]=14>
+  <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="dragEnd($event)"></agm-marker>
+</agm-map>
+
+  	<ion-list>
+
+	  <ion-item>
+	    <ion-label floating>Latitud</ion-label>
+	    <ion-input type="text" [(ngModel)]="lat"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Longitud</ion-label>
+	    <ion-input type="text" [(ngModel)]="lng"></ion-input>
+	  </ion-item>
+	</ion-list>
+		
+	<div class="botones">
+		<button ion-button  round color="secondary" (click)="mapa()">cuardar</button>		
+	</div>
+	
+
+</ion-content>

@@ -50,18 +50,12 @@
     <ion-label floating>Pagina web o facebook: link</ion-label>
     <ion-input [(ngModel)]="web" type="text"></ion-input>
   </ion-item>
-    <ion-list>
-      <ion-item>
+    <ion-item>
         <ion-label>Ciudad</ion-label>
         <ion-select [(ngModel)]="ciudad" okText="Aceptar" cancelText="Cancelar">
-          <ion-option value="nes">Sucre</ion-option>
-          <ion-option value="n64">Cochabamba</ion-option>
-          <ion-option value="ps">Tarija</ion-option>
-          <ion-option value="genesis">Oruro</ion-option>
-          <ion-option value="saturn">Santa Cruz</ion-option>
+          <ion-option *ngFor="let cat of userPostsLists" value="{{cat?.key}}">{{cat?.nombre}}{{cat?.key}}</ion-option>   
         </ion-select>
       </ion-item>
-    </ion-list>
   
   <div text-center>
     <button ion-button  color="secondary" round (click)=" crearRestaurante();  "

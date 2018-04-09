@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Agregar Categoria</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="centro">
+      <button ion-button color="primary" round (click)="takePicture()">
+               <ion-icon name="camera"></ion-icon>&nbsp; Camara 
+      </button>
+      <button ion-button color="primary" round (click)="galletyOptions()">
+               <ion-icon name="md-photos"></ion-icon>&nbsp; Galeria
+      </button>
+    </div>
+ 
+
+  <img [src]="base64Image" *ngIf="base64Image" />
+
+  <ion-item>
+    <ion-label stacked>Nombre Categoria</ion-label>
+      <ion-input [(ngModel)]="photoName" type="text" placeholder="Nombre de la categoria">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Descripcion</ion-label>
+      <ion-input [(ngModel)]="descripcion" type="text" placeholder="descripcion">
+    </ion-input>
+  </ion-item>
+  <div class="centro">
+    <button ion-button round (click)=" createPost(photoName, Picture, descripcion);  ">
+        <ion-icon name="md-thumbs-up"></ion-icon>&nbsp; Guardar
+    </button>
+  </div>
+  
+  
+</ion-content>

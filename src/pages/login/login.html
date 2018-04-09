@@ -36,7 +36,7 @@
         	<!-- se muentra cunado se llena los inputs-->
           	<!-- Show dead button if form is not filled -->
           	<button *ngIf="!email && !contrasena" ion-button color="danger" round clear>Iniciar sesion</button>
-          	 <button ion-button color="gray" round clear (click)="forgotPassword()">Olvidaste tu Contraseña</button>
+          	 <button ion-button color="gray" round clear (click)="showAlert()">Olvidaste tu Contraseña</button>
           	 <button ion-button color="gray" round clear (click)="redirigeRegistro()">Crear Nueva Cuenta</button>
         </div>
        
